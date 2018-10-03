@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { TodoAppModule } from './todo-app.module';
+import { TodoAppComponent } from './todo-app.component';
+import { TodoItemComponent } from './todo-item/todo-item.component';        // add
 
 const routes: Routes = [{
-  path: '',
-  component: TodoAppModule
+    path: '',
+    component: TodoAppComponent,
+    children: [                                                             // add
+        { path: ':index', component: TodoItemComponent },                   // add
+    ]                                                                       // add
 }];
 
 @NgModule({

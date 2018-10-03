@@ -1,0 +1,6 @@
+<input
+  type="checkbox"
+  [ngModel]="(todoList$ | async)[index].done"
+  (click)="toggleTodo(index)"
+/>
+{{(todoList$ | async)[index].name}}
