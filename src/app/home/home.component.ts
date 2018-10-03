@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
+import { Increment, Decrement } from '@state/counter/counter.actions';
+import { State } from '@state/counter/counter.state';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,7 +11,18 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  count$: Observable<State>;
+
+  constructor(private store: Store<State>) {
+    this.count$ = store.pipe(select('count'));
+  }
+
+  increment() {
+    this.store.dispatch(new Increment());
+  }
+
+  decrement() {
+    this.store.dispatch(new Decrement());
   }
 
   ngOnInit() {
